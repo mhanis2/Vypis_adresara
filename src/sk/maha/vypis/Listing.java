@@ -15,20 +15,20 @@ public class Listing {
 		File file = new File(filePath);
 		File[] fileList = file.listFiles();
 
-		if (fileList.length > 0) {
-			for (File oneFile : fileList) {
+		for (File oneFile : fileList) {
+			for (int i = 0; i < degree; i++) {
+				System.out.println("\t");
+			}
+			if (oneFile.isDirectory()) {
+				System.out.println("[Directory] " + oneFile.getName() + ":");
+				fileListing(oneFile.getAbsolutePath(), degree + 1);
+			} else if (oneFile.isFile()) {
 				for (int i = 0; i < degree; i++) {
-					System.out.print("\t");
+					System.out.print("-");
 				}
-				if (oneFile.isDirectory()) {
-					System.out.println(oneFile.getName());
-					fileListing(oneFile.getAbsolutePath(), degree + 1);
-				} else {
-					for (int i = 0; i < degree; i++) {
-						System.out.print("-");
-					}
-					System.out.println("-" + oneFile.getName());
-				}
+				System.out.println("-" + oneFile.getName());
+			} else {
+				return;
 			}
 		}
 	}
@@ -42,6 +42,7 @@ public class Listing {
 	public boolean stopListing(Scanner s) {
 		char answer;
 		do {
+			System.out.println();
 			System.out.println("Do you want to start new listing?");
 			System.out.println("Yes or No? (y/n)");
 			System.out.print("Your answer: ");

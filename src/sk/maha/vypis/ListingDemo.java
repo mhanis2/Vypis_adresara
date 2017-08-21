@@ -26,6 +26,7 @@ public class ListingDemo {
 					file = new File(directoryPath);
 					if (file.exists()) {
 						System.out.println("Directory exists.");
+						System.out.println();
 						directoryListing.fileListing(directoryPath, 0);
 						directoryPathValidation = true;
 					} else {
