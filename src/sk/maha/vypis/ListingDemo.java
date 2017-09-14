@@ -1,9 +1,8 @@
 package sk.maha.vypis;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
-
-import sk.maha.vypis.exceptions.FileNotExistsException;
 
 public class ListingDemo {
 	private static Scanner sc = new Scanner(System.in);
@@ -11,7 +10,7 @@ public class ListingDemo {
 	public static void main(String[] args) throws SecurityException {
 
 		Listing directoryListing = new Listing();
-		GetDirectoryPath getPath = new GetDirectoryPath();
+		DirectoryPathValidation getPath = new DirectoryPathValidation();
 
 		File file = null;
 
@@ -30,11 +29,11 @@ public class ListingDemo {
 						directoryListing.fileListing(directoryPath, 0);
 						directoryPathValidation = true;
 					} else {
-						throw new FileNotExistsException("Directory does not exist.");
+						throw new FileNotFoundException();
 					}
-				} catch (FileNotExistsException e) {
+				} catch (FileNotFoundException e) {
 					System.out.println();
-					e.toString();
+					System.err.println("Directory does not exist.");
 					System.out.println();
 					directoryPathValidation = false;
 				}

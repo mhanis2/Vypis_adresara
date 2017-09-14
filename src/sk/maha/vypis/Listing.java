@@ -17,10 +17,10 @@ public class Listing {
 
 		for (File oneFile : fileList) {
 			for (int i = 0; i < degree; i++) {
-				System.out.println("\t");
+				System.out.print("\t");
 			}
 			if (oneFile.isDirectory()) {
-				System.out.println("[Directory] " + oneFile.getName() + ":");
+				System.out.println(oneFile.getName().toUpperCase() + ":");
 				fileListing(oneFile.getAbsolutePath(), degree + 1);
 			} else if (oneFile.isFile()) {
 				for (int i = 0; i < degree; i++) {
